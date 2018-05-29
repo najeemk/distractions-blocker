@@ -1,0 +1,1 @@
+# mac-bash-distraction-blocker
