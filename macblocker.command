@@ -22,6 +22,9 @@ sudo -- sh -c "echo '#start-Blocking' >> /etc/hosts"
 for i in "${websitesToBlock[@]}"
 do
     sudo -- sh -c "echo '127.0.0.1 $i' >> /etc/hosts"
+    sudo -- sh -c "echo '127.0.0.1 www.$i' >> /etc/hosts"
+    sudo -- sh -c "echo 'fe80::1%lo0 $i' >> /etc/hosts"
+    sudo -- sh -c "echo 'fe80::1%lo0 www.$i' >> /etc/hosts"
 done
 sudo -- sh -c "echo '#stop-Blocking' >> /etc/hosts"
 echo "Successfully blocked distractions! It's time to work now..."
