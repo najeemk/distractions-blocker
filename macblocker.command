@@ -3,7 +3,7 @@ clear
 echo "This script will block distracting websites for however long you specify."
 echo "Note: This script comes with NO WARRENTY of any kind."
 read -p "How many minutes should I block for (if websites are still blocked from last time, press 0 to unblock): " timeToBlock
-if ! [[ "$timeToBlock" =~ ^[0-9]+$ ]] ; 
+if ! [[ "$timeToBlock" =~ ^[0-9]+$ ]] ;
  then exec >&2; echo "Error: Not a positive number! Program will now exit..."; sleep 5; exit 1
 fi
 clear
@@ -12,6 +12,7 @@ timeToBlock=$((timeToBlock * 60))
 echo "To ensure a complete block, administrator rights will be needed!"
 echo "DO NOT modify the hosts file while this script is running or bad things will happen!"
 sudo cp /etc/hosts hosts.bak
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 clear
 echo "Making a backup of the hosts file to the current directory..."
 echo "DO NOT CLOSE THE PROGRAM NOW OR THE WEBSITES WILL BE REMAINED BLOCKED."
@@ -39,4 +40,4 @@ echo "Congratuations, you made it!"
 sudo sed -i '' '/#start-Blocking/,/#stop-Blocking/d' /etc/hosts
 echo "Unblocking websites now!"
 echo "Thanks for using my script :)"
-read -p "Press enter to exit..."
+read -sp "Press enter to exit..."
